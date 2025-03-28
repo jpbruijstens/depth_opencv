@@ -5,6 +5,12 @@ import depthai as dai
 import modules.sliders as sliders
 
 
+def convert_to_grayscale(frame):
+    """
+    Converts a frame to grayscale.
+    """
+    return cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
 def calc_histogram(frame):
     """
     Calculates the histogram of a frame.
@@ -105,7 +111,7 @@ def color_mask(frame, lower_hsv, upper_hsv):
 
 def depth_of_object(depthFrameColor, spatialData, corners, center, spatialCalcConfigInQueue, config):
     """
-    Calculates the depth of an object in the depth frame.
+    Calculates the depth of an region of interest in a frame.
     """
     for depthData in spatialData:
         if corners is not None:
@@ -125,9 +131,6 @@ def depth_of_object(depthFrameColor, spatialData, corners, center, spatialCalcCo
             ymin = int(roi.topLeft().y)
             xmax = int(roi.bottomRight().x)
             ymax = int(roi.bottomRight().y)
-
-            # depthMin = depthData.depthMin
-            # depthMax = depthData.depthMax
 
             printColor = (255, 255, 255)
             fontType = cv2.FONT_HERSHEY_TRIPLEX

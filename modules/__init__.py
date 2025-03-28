@@ -4,6 +4,7 @@ from .streaming import (
 )
 
 from .processing import (
+    convert_to_grayscale,
     convert_to_hsv,
     apply_gaussian_blur,
     detect_edges,
